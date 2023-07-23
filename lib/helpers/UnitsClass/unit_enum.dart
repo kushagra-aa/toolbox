@@ -1,4 +1,6 @@
+// ignore_for_file: constant_identifier_names
 // ? Add New Values to Enum whenever a new unit is added
+
 enum UnitEnum {
   length_meter,
   length_kilometer,

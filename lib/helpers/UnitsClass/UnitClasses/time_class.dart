@@ -1,4 +1,4 @@
-import 'BaseClass.dart';
+import 'base_class.dart';
 
 class Second extends BaseUnitClass {
   Second() : super("Second", "s");

@@ -1,12 +1,12 @@
-import 'UnitClasses/AreaClass.dart';
-import 'UnitClasses/EnergyClass.dart';
-import 'UnitClasses/LengthClass.dart';
-import 'UnitClasses/SpeedClass.dart';
-import 'UnitClasses/TemperatureClass.dart';
-import 'UnitClasses/TimeClass.dart';
-import 'UnitClasses/VolumeClass.dart';
-import 'UnitClasses/WeightClass.dart';
-import 'UnitEnum.dart';
+import 'UnitClasses/area_class.dart';
+import 'UnitClasses/energy_class.dart';
+import 'UnitClasses/length_class.dart';
+import 'UnitClasses/speed_class.dart';
+import 'UnitClasses/temperature_class.dart';
+import 'UnitClasses/time_class.dart';
+import 'UnitClasses/volume_class.dart';
+import 'UnitClasses/weight_class.dart';
+import 'unit_enum.dart';
 
 // ? Add New Values to Enum whenever a new unit is added
 class Units {

@@ -1,4 +1,4 @@
-import 'BaseClass.dart';
+import 'base_class.dart';
 
 class Joule extends BaseUnitClass {
   Joule() : super("Joule", "J");

@@ -1,4 +1,4 @@
-import 'BaseClass.dart';
+import 'base_class.dart';
 
 class SquareMeter extends BaseUnitClass {
   SquareMeter() : super("Square meter", "m²");

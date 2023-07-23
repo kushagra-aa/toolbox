@@ -1,4 +1,4 @@
-import 'BaseClass.dart';
+import 'base_class.dart';
 
 class Celsius extends BaseUnitClass {
   Celsius() : super("Celsius", "°C");

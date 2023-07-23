@@ -1,4 +1,4 @@
-import 'BaseClass.dart';
+import 'base_class.dart';
 
 class MeterPerSecond extends BaseUnitClass {
   MeterPerSecond() : super("Meter per second", "m/s");

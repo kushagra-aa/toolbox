@@ -1,4 +1,4 @@
-import 'BaseClass.dart';
+import 'base_class.dart';
 
 class Meter extends BaseUnitClass {
   Meter() : super("Meter", "m");
