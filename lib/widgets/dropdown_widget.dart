@@ -32,7 +32,7 @@ class _DropdownState extends State<Dropdown> {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(
-            value,
+            value.toUpperCase(),
             style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
           ),
         );

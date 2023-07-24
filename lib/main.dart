@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolbox/helpers/unit_options.dart';
 import 'package:toolbox/widgets/dropdown_widget.dart';
+import 'package:toolbox/widgets/unit_converter_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,32 +46,29 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              'Welcome!',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.inversePrimary,
-                fontSize: 60,
-                letterSpacing: 8,
-              ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              color: Theme.of(context).colorScheme.onSecondary,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text(
+                      "Select Unit Type:",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Dropdown(
+                      dropdownValue: dropdownValue,
+                      changeDropdownValue: (String? value) => {
+                        setState(() {
+                          dropdownValue = value ?? '';
+                        })
+                      },
+                    ),
+                  ]),
             ),
-            Text(
-              dropdownValue,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.inversePrimary,
-                fontSize: 60,
-                letterSpacing: 8,
-              ),
-            ),
-            Dropdown(
-              dropdownValue: dropdownValue,
-              changeDropdownValue: (String? value) => {
-                setState(() {
-                  dropdownValue = value ?? '';
-                })
-              },
-            )
+            const UnitConvertor(),
           ],
         ),
       ),
