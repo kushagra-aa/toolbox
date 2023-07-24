@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toolbox/helpers/unit_options.dart';
+import 'package:toolbox/widgets/dropdown_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +33,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String dropdownValue = unitOptions[0];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,112 +55,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 letterSpacing: 8,
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.background,
-              ),
-              height: 40,
-              width: 600,
-              child: const Text('background'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.error,
-              ),
-              height: 40,
-              width: 600,
-              child: const Text('error'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
-              height: 40,
-              width: 600,
-              child: Text(
-                'onBackground',
-                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            Text(
+              dropdownValue,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.inversePrimary,
+                fontSize: 60,
+                letterSpacing: 8,
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.onError,
-              ),
-              height: 40,
-              width: 600,
-              child: const Text('onError'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-              height: 40,
-              width: 600,
-              child: const Text('onPrimary'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
-              height: 40,
-              width: 600,
-              child: const Text('onSecondary'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-              height: 40,
-              width: 600,
-              child: Text(
-                'onSurface',
-                style: TextStyle(color: Theme.of(context).colorScheme.primary),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              height: 40,
-              width: 600,
-              child: const Text('primary'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-              height: 40,
-              width: 600,
-              child: const Text('secondary'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.redAccent),
-                color: Theme.of(context).colorScheme.surface,
-              ),
-              height: 40,
-              width: 600,
-              child: const Text('surface'),
-            ),
+            Dropdown(
+              dropdownValue: dropdownValue,
+              changeDropdownValue: (String? value) => {
+                setState(() {
+                  dropdownValue = value ?? '';
+                })
+              },
+            )
           ],
         ),
       ),
