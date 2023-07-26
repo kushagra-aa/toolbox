@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:toolbox/helpers/unit_options.dart';
+import 'package:toolbox/helpers/UnitsClass/unit_enum.dart';
 
-class Dropdown extends StatefulWidget {
-  const Dropdown(
+class UnitDropdown extends StatefulWidget {
+  const UnitDropdown(
       {super.key,
       required this.dropdownValue,
-      required this.changeDropdownValue});
+      required this.changeDropdownValue,
+      required this.dropdownOptions});
   final String dropdownValue;
+  final List<Map<String, Object>> dropdownOptions;
   final void Function(String? value) changeDropdownValue;
   @override
-  State<Dropdown> createState() => _DropdownState();
+  State<UnitDropdown> createState() => _UnitDropdownState();
 }
 
-class _DropdownState extends State<Dropdown> {
+class _UnitDropdownState extends State<UnitDropdown> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
@@ -28,11 +30,12 @@ class _DropdownState extends State<Dropdown> {
       onChanged: (String? value) {
         widget.changeDropdownValue(value);
       },
-      items: unitOptions.map<DropdownMenuItem<String>>((String value) {
+      items: widget.dropdownOptions.map<DropdownMenuItem<String>>((value) {
+        final option = value;
         return DropdownMenuItem<String>(
-          value: value,
+          value: (option["value"] as UnitEnum).toString(),
           child: Text(
-            value.toUpperCase(),
+            option["symbol"] as String,
             style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
           ),
         );

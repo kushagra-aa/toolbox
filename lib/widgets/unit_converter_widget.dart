@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toolbox/helpers/UnitsClass/unit_enum.dart';
 import 'package:toolbox/helpers/UnitsClass/units_class.dart';
+import 'package:toolbox/helpers/unit_options.dart';
+import 'package:toolbox/widgets/unit_dropdown_widget.dart';
 
 class UnitConvertor extends StatefulWidget {
   const UnitConvertor({super.key});
@@ -15,6 +17,8 @@ class _UnitConvertorState extends State<UnitConvertor> {
 
   double input1 = 0;
   double input2 = 0;
+  String selectedFromOption = (timeOptions[3]['value']).toString();
+  String selectedToOption = (timeOptions[2]['value']).toString();
 
   @override
   void initState() {
@@ -36,40 +40,69 @@ class _UnitConvertorState extends State<UnitConvertor> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text(
-          '${units.convert(input1, UnitEnum.time_day, UnitEnum.time_hour)}',
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        SizedBox(
+            height: 50,
+            child: Row(children: [
+              Expanded(
+                child: TextField(
+                  controller: _input1,
+                  onChanged: (v) => setState(() {
+                    double temp = double.parse(
+                        double.parse(_input1.text).toStringAsFixed(3));
+                    double converted = double.parse(units
+                        .convert(temp, UnitEnum.time_day, UnitEnum.time_hour)
+                        .toStringAsFixed(3));
+                    input1 = temp;
+                    input2 = converted;
+                    _input2.text = converted.toString();
+                  }),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              UnitDropdown(
+                dropdownValue: selectedFromOption,
+                changeDropdownValue: (v) {
+                  setState(() => selectedFromOption =
+                      v ?? (timeOptions[3]['value']).toString());
+                },
+                dropdownOptions: timeOptions,
+              ),
+            ])),
+        SizedBox(
+          height: 50,
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _input2,
+                  onChanged: (v) => setState(() {
+                    double temp = double.parse(
+                        double.parse(_input2.text).toStringAsFixed(3));
+                    double converted = double.parse(units
+                        .convert(temp, UnitEnum.time_hour, UnitEnum.time_day)
+                        .toStringAsFixed(3));
+                    input1 = converted;
+                    input2 = temp;
+                    _input1.text = converted.toString();
+                  }),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              UnitDropdown(
+                dropdownValue: selectedToOption,
+                changeDropdownValue: (v) {
+                  setState(() => selectedToOption =
+                      v ?? (timeOptions[2]['value']).toString());
+                },
+                dropdownOptions: timeOptions,
+              ),
+            ],
+          ),
         ),
-        TextField(
-          controller: _input1,
-          onChanged: (v) => setState(() {
-            double temp =
-                double.parse(double.parse(_input1.text).toStringAsFixed(3));
-            double converted = double.parse(units
-                .convert(temp, UnitEnum.time_day, UnitEnum.time_hour)
-                .toStringAsFixed(3));
-            input1 = temp;
-            input2 = converted;
-            _input2.text = converted.toString();
-          }),
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
-          keyboardType: TextInputType.number,
-        ),
-        TextField(
-          controller: _input2,
-          onChanged: (v) => setState(() {
-            double temp =
-                double.parse(double.parse(_input2.text).toStringAsFixed(3));
-            double converted = double.parse(units
-                .convert(temp, UnitEnum.time_hour, UnitEnum.time_day)
-                .toStringAsFixed(3));
-            input1 = converted;
-            input2 = temp;
-            _input1.text = converted.toString();
-          }),
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
-          keyboardType: TextInputType.number,
-        )
       ],
     );
   }
