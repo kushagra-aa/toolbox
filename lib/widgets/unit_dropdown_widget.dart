@@ -24,10 +24,7 @@ class _UnitDropdownState extends State<UnitDropdown> {
           color: Theme.of(context).colorScheme.inversePrimary),
       elevation: 10,
       style: const TextStyle(fontSize: 14),
-      underline: Container(
-        height: 2,
-        color: Theme.of(context).colorScheme.inversePrimary,
-      ),
+      underline: const SizedBox(),
       onChanged: (String? value) {
         widget.changeDropdownValue(value);
       },

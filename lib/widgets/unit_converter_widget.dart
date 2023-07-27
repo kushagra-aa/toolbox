@@ -42,11 +42,19 @@ class _UnitConvertorState extends State<UnitConvertor> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                color: Theme.of(context).colorScheme.inversePrimary,
+                width: 1,
+              ))),
               height: 50,
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Expanded(
                   child: TextField(
+                    decoration:
+                        const InputDecoration.collapsed(hintText: 'From Value'),
                     controller: _input1,
                     onChanged: (v) => setState(() {
                       double temp = double.parse(
@@ -72,13 +80,21 @@ class _UnitConvertorState extends State<UnitConvertor> {
                   dropdownOptions: timeOptions,
                 ),
               ])),
-          SizedBox(
+          Container(
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+              color: Theme.of(context).colorScheme.inversePrimary,
+              width: 1,
+            ))),
             height: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Expanded(
                   child: TextField(
+                    decoration:
+                        const InputDecoration.collapsed(hintText: 'To Value'),
                     controller: _input2,
                     onChanged: (v) => setState(() {
                       double temp = double.parse(
