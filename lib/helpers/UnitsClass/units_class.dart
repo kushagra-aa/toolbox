@@ -811,4 +811,178 @@ class Units {
         return energy.calorie.symbol;
     }
   }
+
+  UnitEnum getUnitEnumFromName(String unit) {
+    if (length.meter.name == unit) {
+      return UnitEnum.length_meter;
+    } else if (length.kilometer.name == unit) {
+      return UnitEnum.length_kilometer;
+    } else if (length.centimeter.name == unit) {
+      return UnitEnum.length_centimeter;
+    } else if (length.milimeter.name == unit) {
+      return UnitEnum.length_millimeter;
+    } else if (length.inch.name == unit) {
+      return UnitEnum.length_inch;
+    } else if (length.foot.name == unit) {
+      return UnitEnum.length_foot;
+    } else if (length.yard.name == unit) {
+      return UnitEnum.length_yard;
+    } else if (length.mile.name == unit) {
+      return UnitEnum.length_mile;
+    } else if (weight.killogram.name == unit) {
+      return UnitEnum.weight_killogram;
+    } else if (weight.gram.name == unit) {
+      return UnitEnum.weight_gram;
+    } else if (weight.miligram.name == unit) {
+      return UnitEnum.weight_miligram;
+    } else if (weight.pound.name == unit) {
+      return UnitEnum.weight_pound;
+    } else if (weight.ounce.name == unit) {
+      return UnitEnum.weight_ounce;
+    } else if (temperature.celsius.name == unit) {
+      return UnitEnum.temperature_celsius;
+    } else if (temperature.fahrenheit.name == unit) {
+      return UnitEnum.temperature_fahrenheit;
+    } else if (temperature.kelvin.name == unit) {
+      return UnitEnum.temperature_kelvin;
+    } else if (volume.fluidOunce.name == unit) {
+      return UnitEnum.volume_fluidOunce;
+    } else if (volume.gallon.name == unit) {
+      return UnitEnum.volume_gallon;
+    } else if (volume.quart.name == unit) {
+      return UnitEnum.volume_quart;
+    } else if (volume.pint.name == unit) {
+      return UnitEnum.volume_pint;
+    } else if (volume.cubicMeter.name == unit) {
+      return UnitEnum.volume_cubicMeter;
+    } else if (volume.cubicCentimeter.name == unit) {
+      return UnitEnum.volume_cubicCentimeter;
+    } else if (volume.milliliter.name == unit) {
+      return UnitEnum.volume_milliliter;
+    } else if (volume.liter.name == unit) {
+      return UnitEnum.volume_liter;
+    } else if (area.acre.name == unit) {
+      return UnitEnum.area_acre;
+    } else if (area.hectare.name == unit) {
+      return UnitEnum.area_hectare;
+    } else if (area.squareMeter.name == unit) {
+      return UnitEnum.area_squareMeter;
+    } else if (area.squareKilometer.name == unit) {
+      return UnitEnum.area_squareKilometer;
+    } else if (area.squareCentimeter.name == unit) {
+      return UnitEnum.area_squareCentimeter;
+    } else if (area.squareInch.name == unit) {
+      return UnitEnum.area_squareInch;
+    } else if (area.squareFoot.name == unit) {
+      return UnitEnum.area_squareFoot;
+    } else if (speed.meterPerSecond.name == unit) {
+      return UnitEnum.speed_meterPerSecond;
+    } else if (speed.kilometerPerHour.name == unit) {
+      return UnitEnum.speed_kilometerPerHour;
+    } else if (speed.milePerHour.name == unit) {
+      return UnitEnum.speed_milePerHour;
+    } else if (time.second.name == unit) {
+      return UnitEnum.time_second;
+    } else if (time.minute.name == unit) {
+      return UnitEnum.time_minute;
+    } else if (time.hour.name == unit) {
+      return UnitEnum.time_hour;
+    } else if (time.day.name == unit) {
+      return UnitEnum.time_day;
+    } else if (energy.joule.name == unit) {
+      return UnitEnum.energy_joule;
+    } else if (energy.kilocalorie.name == unit) {
+      return UnitEnum.energy_kilocalorie;
+    } else if (energy.calorie.name == unit) {
+      return UnitEnum.energy_calorie;
+    }
+    return UnitEnum.area_acre;
+  }
+
+  UnitEnum getUnitEnumFromSymbol(String unit) {
+    if (length.meter.symbol == unit) {
+      return UnitEnum.length_meter;
+    } else if (length.kilometer.symbol == unit) {
+      return UnitEnum.length_kilometer;
+    } else if (length.centimeter.symbol == unit) {
+      return UnitEnum.length_centimeter;
+    } else if (length.milimeter.symbol == unit) {
+      return UnitEnum.length_millimeter;
+    } else if (length.inch.symbol == unit) {
+      return UnitEnum.length_inch;
+    } else if (length.foot.symbol == unit) {
+      return UnitEnum.length_foot;
+    } else if (length.yard.symbol == unit) {
+      return UnitEnum.length_yard;
+    } else if (length.mile.symbol == unit) {
+      return UnitEnum.length_mile;
+    } else if (weight.killogram.symbol == unit) {
+      return UnitEnum.weight_killogram;
+    } else if (weight.gram.symbol == unit) {
+      return UnitEnum.weight_gram;
+    } else if (weight.miligram.symbol == unit) {
+      return UnitEnum.weight_miligram;
+    } else if (weight.pound.symbol == unit) {
+      return UnitEnum.weight_pound;
+    } else if (weight.ounce.symbol == unit) {
+      return UnitEnum.weight_ounce;
+    } else if (temperature.celsius.symbol == unit) {
+      return UnitEnum.temperature_celsius;
+    } else if (temperature.fahrenheit.symbol == unit) {
+      return UnitEnum.temperature_fahrenheit;
+    } else if (temperature.kelvin.symbol == unit) {
+      return UnitEnum.temperature_kelvin;
+    } else if (volume.fluidOunce.symbol == unit) {
+      return UnitEnum.volume_fluidOunce;
+    } else if (volume.gallon.symbol == unit) {
+      return UnitEnum.volume_gallon;
+    } else if (volume.quart.symbol == unit) {
+      return UnitEnum.volume_quart;
+    } else if (volume.pint.symbol == unit) {
+      return UnitEnum.volume_pint;
+    } else if (volume.cubicMeter.symbol == unit) {
+      return UnitEnum.volume_cubicMeter;
+    } else if (volume.cubicCentimeter.symbol == unit) {
+      return UnitEnum.volume_cubicCentimeter;
+    } else if (volume.milliliter.symbol == unit) {
+      return UnitEnum.volume_milliliter;
+    } else if (volume.liter.symbol == unit) {
+      return UnitEnum.volume_liter;
+    } else if (area.acre.symbol == unit) {
+      return UnitEnum.area_acre;
+    } else if (area.hectare.symbol == unit) {
+      return UnitEnum.area_hectare;
+    } else if (area.squareMeter.symbol == unit) {
+      return UnitEnum.area_squareMeter;
+    } else if (area.squareKilometer.symbol == unit) {
+      return UnitEnum.area_squareKilometer;
+    } else if (area.squareCentimeter.symbol == unit) {
+      return UnitEnum.area_squareCentimeter;
+    } else if (area.squareInch.symbol == unit) {
+      return UnitEnum.area_squareInch;
+    } else if (area.squareFoot.symbol == unit) {
+      return UnitEnum.area_squareFoot;
+    } else if (speed.meterPerSecond.symbol == unit) {
+      return UnitEnum.speed_meterPerSecond;
+    } else if (speed.kilometerPerHour.symbol == unit) {
+      return UnitEnum.speed_kilometerPerHour;
+    } else if (speed.milePerHour.symbol == unit) {
+      return UnitEnum.speed_milePerHour;
+    } else if (time.second.symbol == unit) {
+      return UnitEnum.time_second;
+    } else if (time.minute.symbol == unit) {
+      return UnitEnum.time_minute;
+    } else if (time.hour.symbol == unit) {
+      return UnitEnum.time_hour;
+    } else if (time.day.symbol == unit) {
+      return UnitEnum.time_day;
+    } else if (energy.joule.symbol == unit) {
+      return UnitEnum.energy_joule;
+    } else if (energy.kilocalorie.symbol == unit) {
+      return UnitEnum.energy_kilocalorie;
+    } else if (energy.calorie.symbol == unit) {
+      return UnitEnum.energy_calorie;
+    }
+    return UnitEnum.area_acre;
+  }
 }
