@@ -19,9 +19,10 @@ class _UnitDropdownState extends State<UnitDropdown> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: widget.dropdownValue,
+      // isExpanded: true,
       icon: Icon(Icons.arrow_drop_down,
           color: Theme.of(context).colorScheme.inversePrimary),
-      elevation: 16,
+      elevation: 10,
       style: const TextStyle(fontSize: 14),
       underline: Container(
         height: 2,

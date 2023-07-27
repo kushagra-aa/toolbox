@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ]),
             ),
-            const UnitConvertor(),
+            const Expanded(child: UnitConvertor()),
           ],
         ),
       ),
