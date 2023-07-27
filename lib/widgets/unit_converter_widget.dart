@@ -65,13 +65,13 @@ class _UnitConvertorState extends State<UnitConvertor> {
                     controller: _input1,
                     onChanged: (v) => setState(() {
                       double temp = double.parse(
-                          double.parse(_input1.text).toStringAsFixed(3));
+                          double.parse(_input1.text).toStringAsFixed(8));
                       double converted = double.parse(units
                           .convert(
                               temp,
                               units.getUnitEnumFromName(selectedFromOption),
                               units.getUnitEnumFromName(selectedToOption))
-                          .toStringAsFixed(3));
+                          .toStringAsFixed(8));
                       input1 = temp;
                       input2 = converted;
                       _input2.text = converted.toString();
@@ -108,13 +108,13 @@ class _UnitConvertorState extends State<UnitConvertor> {
                     controller: _input2,
                     onChanged: (v) => setState(() {
                       double temp = double.parse(
-                          double.parse(_input2.text).toStringAsFixed(3));
+                          double.parse(_input2.text).toStringAsFixed(8));
                       double converted = double.parse(units
                           .convert(
                               temp,
                               units.getUnitEnumFromName(selectedToOption),
                               units.getUnitEnumFromName(selectedFromOption))
-                          .toStringAsFixed(3));
+                          .toStringAsFixed(8));
                       input1 = converted;
                       input2 = temp;
                       _input1.text = converted.toString();
