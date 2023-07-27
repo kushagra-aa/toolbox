@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:toolbox/helpers/UnitsClass/unit_enum.dart';
 
 class UnitDropdown extends StatefulWidget {
   const UnitDropdown(
@@ -31,7 +30,7 @@ class _UnitDropdownState extends State<UnitDropdown> {
       items: widget.dropdownOptions.map<DropdownMenuItem<String>>((value) {
         final option = value;
         return DropdownMenuItem<String>(
-          value: (option["value"] as UnitEnum).toString(),
+          value: (option["name"] as String),
           child: Text(
             option["symbol"] as String,
             style: TextStyle(color: Theme.of(context).colorScheme.onBackground),

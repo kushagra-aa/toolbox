@@ -2,7 +2,7 @@
 import 'package:toolbox/helpers/UnitsClass/unit_enum.dart';
 import 'package:toolbox/helpers/UnitsClass/units_class.dart';
 
-final unitOptions = [
+const unitOptions = [
   "area",
   "energy",
   "length",

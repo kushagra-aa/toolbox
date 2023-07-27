@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:toolbox/helpers/UnitsClass/unit_enum.dart';
 import 'package:toolbox/helpers/UnitsClass/units_class.dart';
-import 'package:toolbox/helpers/unit_options.dart';
+import 'package:toolbox/helpers/get_unit_options.dart';
 import 'package:toolbox/widgets/unit_dropdown_widget.dart';
 
 class UnitConvertor extends StatefulWidget {
-  const UnitConvertor({super.key});
+  final String? dropdownValue;
+
+  // ignore: prefer_const_constructors_in_immutables
+  UnitConvertor({super.key, this.dropdownValue});
 
   @override
   State<UnitConvertor> createState() => _UnitConvertorState();
@@ -15,15 +17,20 @@ class _UnitConvertorState extends State<UnitConvertor> {
   late final TextEditingController _input1;
   late final TextEditingController _input2;
 
+  late List<Map<String, Object>> unitOptions;
+
   double input1 = 0;
   double input2 = 0;
-  String selectedFromOption = (timeOptions[3]['value']).toString();
-  String selectedToOption = (timeOptions[2]['value']).toString();
+  late String selectedFromOption;
+  late String selectedToOption;
 
   @override
   void initState() {
     _input1 = TextEditingController();
     _input2 = TextEditingController();
+    unitOptions = getUnitOptions(widget.dropdownValue ?? 'area');
+    selectedFromOption = (unitOptions[0]['name']).toString();
+    selectedToOption = (unitOptions[0]['name']).toString();
     super.initState();
   }
 
@@ -60,7 +67,10 @@ class _UnitConvertorState extends State<UnitConvertor> {
                       double temp = double.parse(
                           double.parse(_input1.text).toStringAsFixed(3));
                       double converted = double.parse(units
-                          .convert(temp, UnitEnum.time_day, UnitEnum.time_hour)
+                          .convert(
+                              temp,
+                              units.getUnitEnumFromName(selectedFromOption),
+                              units.getUnitEnumFromName(selectedToOption))
                           .toStringAsFixed(3));
                       input1 = temp;
                       input2 = converted;
@@ -75,9 +85,9 @@ class _UnitConvertorState extends State<UnitConvertor> {
                   dropdownValue: selectedFromOption,
                   changeDropdownValue: (v) {
                     setState(() => selectedFromOption =
-                        v ?? (timeOptions[3]['value']).toString());
+                        v ?? (unitOptions[0]['name']).toString());
                   },
-                  dropdownOptions: timeOptions,
+                  dropdownOptions: unitOptions,
                 ),
               ])),
           Container(
@@ -100,7 +110,10 @@ class _UnitConvertorState extends State<UnitConvertor> {
                       double temp = double.parse(
                           double.parse(_input2.text).toStringAsFixed(3));
                       double converted = double.parse(units
-                          .convert(temp, UnitEnum.time_hour, UnitEnum.time_day)
+                          .convert(
+                              temp,
+                              units.getUnitEnumFromName(selectedToOption),
+                              units.getUnitEnumFromName(selectedFromOption))
                           .toStringAsFixed(3));
                       input1 = converted;
                       input2 = temp;
@@ -115,9 +128,9 @@ class _UnitConvertorState extends State<UnitConvertor> {
                   dropdownValue: selectedToOption,
                   changeDropdownValue: (v) {
                     setState(() => selectedToOption =
-                        v ?? (timeOptions[2]['value']).toString());
+                        v ?? (unitOptions[0]['name']).toString());
                   },
-                  dropdownOptions: timeOptions,
+                  dropdownOptions: unitOptions,
                 ),
               ],
             ),
