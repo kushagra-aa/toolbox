@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:toolbox/helpers/UnitsClass/units_class.dart';
 import 'package:toolbox/helpers/get_unit_options.dart';
 import 'package:toolbox/widgets/unit_dropdown_widget.dart';
+import 'dart:developer' as devtools show log;
 
 class UnitConvertor extends StatefulWidget {
-  final String? dropdownValue;
+  final String? initialDropdownValue;
 
   // ignore: prefer_const_constructors_in_immutables
-  UnitConvertor({super.key, this.dropdownValue});
+  UnitConvertor({super.key, this.initialDropdownValue});
 
   @override
   State<UnitConvertor> createState() => _UnitConvertorState();
@@ -17,6 +18,7 @@ class _UnitConvertorState extends State<UnitConvertor> {
   late final TextEditingController _input1;
   late final TextEditingController _input2;
 
+  late String dropdownValue;
   late List<Map<String, Object>> unitOptions;
 
   double input1 = 0;
@@ -28,10 +30,29 @@ class _UnitConvertorState extends State<UnitConvertor> {
   void initState() {
     _input1 = TextEditingController();
     _input2 = TextEditingController();
-    unitOptions = getUnitOptions(widget.dropdownValue ?? 'area');
+    dropdownValue = widget.initialDropdownValue ?? "area";
+    unitOptions = getUnitOptions(dropdownValue);
+    devtools.log(unitOptions.toString());
+    devtools.log(widget.initialDropdownValue ?? 'not found');
+    devtools.log(dropdownValue);
     selectedFromOption = (unitOptions[0]['name']).toString();
     selectedToOption = (unitOptions[0]['name']).toString();
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(UnitConvertor oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialDropdownValue != widget.initialDropdownValue) {
+      // Dropdown value has changed in the parent (HomePage), update the state and trigger the function
+      dropdownValue = widget.initialDropdownValue ?? "area";
+      devtools.log("Change");
+      unitOptions = getUnitOptions(dropdownValue);
+      selectedFromOption = (unitOptions[0]['name']).toString();
+      selectedToOption = (unitOptions[0]['name']).toString();
+      devtools.log(dropdownValue);
+      devtools.log(unitOptions.toString());
+    }
   }
 
   @override
