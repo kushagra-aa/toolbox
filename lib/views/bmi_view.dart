@@ -16,7 +16,9 @@ class _BMIPageState extends State<BMIPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("BMI Calculator"),
-        leading: const BackButton(),
+        leading: BackButton(onPressed: () {
+          Navigator.pop(context);
+        }),
       ),
       body: const Center(child: BMICalculator()),
     );

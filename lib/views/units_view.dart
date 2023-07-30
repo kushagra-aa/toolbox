@@ -4,9 +4,7 @@ import 'package:toolbox/widgets/dropdown_widget.dart';
 import 'package:toolbox/widgets/unit_converter_widget.dart';
 
 class UnitConverterPage extends StatefulWidget {
-  const UnitConverterPage({super.key, required this.title});
-
-  final String title;
+  const UnitConverterPage({super.key});
 
   @override
   State<UnitConverterPage> createState() => _UnitConverterPageState();
@@ -21,8 +19,10 @@ class _UnitConverterPageState extends State<UnitConverterPage> {
       backgroundColor: const Color.fromARGB(255, 189, 236, 255),
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-        leading: const BackButton(),
+        title: const Text('Unit Converter'),
+        leading: BackButton(onPressed: () {
+          Navigator.pop(context);
+        }),
       ),
       body: Center(
         child: Column(
