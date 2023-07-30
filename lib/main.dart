@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:toolbox/helpers/unit_options.dart';
-import 'package:toolbox/widgets/dropdown_widget.dart';
-import 'package:toolbox/widgets/unit_converter_widget.dart';
+import 'package:toolbox/constants/routes.dart';
+import 'package:toolbox/views/bmi_view.dart';
+import 'package:toolbox/views/home_view.dart';
+import 'package:toolbox/views/units_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,62 +20,11 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 8, 253, 233)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Unit Converter'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  String dropdownValue = unitOptions[0];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 189, 236, 255),
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              color: Theme.of(context).colorScheme.onSecondary,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text(
-                      "Select Unit Type:",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    Dropdown(
-                      dropdownValue: dropdownValue,
-                      changeDropdownValue: (String? value) => {
-                        setState(() {
-                          dropdownValue = value ?? '';
-                        })
-                      },
-                    ),
-                  ]),
-            ),
-            Expanded(
-                child: UnitConvertor(
-              initialDropdownValue: dropdownValue,
-            )),
-          ],
-        ),
-      ),
+      routes: {
+        bmiRoute: (context) => const BMIPage(),
+        unitRoute: (context) => const UnitConverterPage(),
+      },
+      home: const HomePage(title: 'Select App'),
     );
   }
 }
