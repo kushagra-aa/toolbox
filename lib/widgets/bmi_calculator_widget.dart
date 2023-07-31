@@ -20,6 +20,7 @@ class _BMICalculatorState extends State<BMICalculator> {
   late List<Map<String, Object>> bmiHeightOptions;
   late List<Map<String, Object>> bmiWeightOptions;
 
+  late String report;
   late String selectedHeightOption;
   late String selectedWightOption;
   double value = 0;
@@ -43,6 +44,11 @@ class _BMICalculatorState extends State<BMICalculator> {
     setState(() {
       value =
           double.parse(calculateBMI(heightInM, weightInKG).toStringAsFixed(2));
+      if (value > 27) {
+        report = 'You Fat!';
+      } else {
+        report = '';
+      }
       devtools.log(_heightInput.text);
       devtools.log(_weightInput.text);
     });
@@ -161,6 +167,9 @@ class _BMICalculatorState extends State<BMICalculator> {
                 )
               ],
             ),
+          ),
+          Center(
+            child: Text(report),
           )
         ],
       ),
