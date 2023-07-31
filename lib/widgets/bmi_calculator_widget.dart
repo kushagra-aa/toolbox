@@ -20,9 +20,9 @@ class _BMICalculatorState extends State<BMICalculator> {
   late List<Map<String, Object>> bmiHeightOptions;
   late List<Map<String, Object>> bmiWeightOptions;
 
-  late String report;
   late String selectedHeightOption;
   late String selectedWightOption;
+  String report = '';
   double value = 0;
 
   void calculate() {
