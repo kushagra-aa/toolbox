@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolbox/helpers/UnitsClass/units_class.dart';
 import 'package:toolbox/helpers/bmi_calculator.dart';
 
 class BMIReport extends StatelessWidget {
@@ -6,9 +7,11 @@ class BMIReport extends StatelessWidget {
       {super.key,
       required this.bmiValue,
       required this.heightValue,
+      required this.weightValue,
       required this.reset});
 
   final double heightValue;
+  final double weightValue;
   final double bmiValue;
   final Function reset;
 
@@ -68,6 +71,52 @@ class BMIReport extends StatelessWidget {
                 const Spacer(),
                 Text(
                   '$bmiValue',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 24,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(top: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Your Height:',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 24,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  '$heightValue ${Units.length.meter.symbol}',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 24,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(top: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Your Weight:',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 24,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  '$weightValue ${Units.weight.killogram.symbol}',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 24,

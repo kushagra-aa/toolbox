@@ -27,21 +27,8 @@ class _BMICalculatorState extends State<BMICalculator> {
   double value = 0;
 
   void calculate() {
-    double heightInM = double.parse(_heightInput.text);
-    double weightInKG = double.parse(_weightInput.text);
-    final units = Units();
-    if (selectedHeightOption != lengthOptions[0]['name']) {
-      heightInM = units.convert(
-          heightInM,
-          units.getUnitEnumFromName(selectedHeightOption),
-          UnitEnum.length_meter);
-    }
-    if (selectedWightOption != weightOptions[0]['name']) {
-      weightInKG = units.convert(
-          weightInKG,
-          units.getUnitEnumFromName(selectedWightOption),
-          UnitEnum.weight_killogram);
-    }
+    double heightInM = getHeightInMeter();
+    double weightInKG = getWeightInKiloGram();
     setState(() {
       value =
           double.parse(calculateBMI(heightInM, weightInKG).toStringAsFixed(2));
@@ -53,6 +40,30 @@ class _BMICalculatorState extends State<BMICalculator> {
       devtools.log(_heightInput.text);
       devtools.log(_weightInput.text);
     });
+  }
+
+  double getHeightInMeter() {
+    double heightInM = double.parse(_heightInput.text);
+    final units = Units();
+    if (selectedHeightOption != lengthOptions[0]['name']) {
+      heightInM = units.convert(
+          heightInM,
+          units.getUnitEnumFromName(selectedHeightOption),
+          UnitEnum.length_meter);
+    }
+    return heightInM;
+  }
+
+  double getWeightInKiloGram() {
+    double weightInKG = double.parse(_weightInput.text);
+    final units = Units();
+    if (selectedWightOption != weightOptions[0]['name']) {
+      weightInKG = units.convert(
+          weightInKG,
+          units.getUnitEnumFromName(selectedWightOption),
+          UnitEnum.weight_killogram);
+    }
+    return weightInKG;
   }
 
   @override
@@ -154,7 +165,8 @@ class _BMICalculatorState extends State<BMICalculator> {
     }
     return BMIReport(
         bmiValue: value,
-        heightValue: double.parse(_heightInput.text),
+        heightValue: getHeightInMeter(),
+        weightValue: getWeightInKiloGram(),
         reset: () {
           setState(() {
             value = 0;
