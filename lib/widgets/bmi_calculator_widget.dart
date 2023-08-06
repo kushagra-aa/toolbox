@@ -3,6 +3,7 @@ import 'package:toolbox/helpers/UnitsClass/unit_enum.dart';
 import 'package:toolbox/helpers/UnitsClass/units_class.dart';
 import 'package:toolbox/helpers/bmi_calculator.dart';
 import 'package:toolbox/helpers/unit_options.dart';
+import 'package:toolbox/widgets/bmi_report.dart';
 import 'package:toolbox/widgets/unit_dropdown_widget.dart';
 import 'dart:developer' as devtools show log;
 
@@ -74,12 +75,41 @@ class _BMICalculatorState extends State<BMICalculator> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
+    if (value == 0) {
+      return Container(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                  width: 1,
+                ))),
+                height: 50,
+                child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  Expanded(
+                    child: TextField(
+                      decoration:
+                          const InputDecoration.collapsed(hintText: 'Height'),
+                      controller: _heightInput,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onBackground),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  UnitDropdown(
+                    dropdownValue: selectedHeightOption,
+                    changeDropdownValue: (v) {
+                      setState(() => selectedHeightOption =
+                          v ?? (bmiHeightOptions[0]['name']).toString());
+                    },
+                    dropdownOptions: bmiHeightOptions,
+                  ),
+                ])),
+            Container(
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(
@@ -87,92 +117,49 @@ class _BMICalculatorState extends State<BMICalculator> {
                 width: 1,
               ))),
               height: 50,
-              child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                Expanded(
-                  child: TextField(
-                    decoration:
-                        const InputDecoration.collapsed(hintText: 'Height'),
-                    controller: _heightInput,
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground),
-                    keyboardType: TextInputType.number,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration:
+                          const InputDecoration.collapsed(hintText: 'Weight'),
+                      controller: _weightInput,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onBackground),
+                      keyboardType: TextInputType.number,
+                    ),
                   ),
-                ),
-                UnitDropdown(
-                  dropdownValue: selectedHeightOption,
-                  changeDropdownValue: (v) {
-                    setState(() => selectedHeightOption =
-                        v ?? (bmiHeightOptions[0]['name']).toString());
-                  },
-                  dropdownOptions: bmiHeightOptions,
-                ),
-              ])),
-          Container(
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-              color: Theme.of(context).colorScheme.inversePrimary,
-              width: 1,
-            ))),
-            height: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration:
-                        const InputDecoration.collapsed(hintText: 'Weight'),
-                    controller: _weightInput,
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground),
-                    keyboardType: TextInputType.number,
+                  UnitDropdown(
+                    dropdownValue: selectedWightOption,
+                    changeDropdownValue: (v) {
+                      setState(() => selectedWightOption =
+                          v ?? (bmiWeightOptions[0]['name']).toString());
+                    },
+                    dropdownOptions: bmiWeightOptions,
                   ),
-                ),
-                UnitDropdown(
-                  dropdownValue: selectedWightOption,
-                  changeDropdownValue: (v) {
-                    setState(() => selectedWightOption =
-                        v ?? (bmiWeightOptions[0]['name']).toString());
-                  },
-                  dropdownOptions: bmiWeightOptions,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-              padding: const EdgeInsets.only(top: 10),
-              child: ElevatedButton(
-                  onPressed: () {
-                    calculate();
-                  },
-                  child: const Text('Calculate'))),
-          Container(
-            padding: const EdgeInsets.only(top: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'BMI:',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontSize: 24,
-                  ),
-                ),
-                Text(
-                  '$value',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontSize: 24,
-                  ),
-                )
-              ],
-            ),
-          ),
-          Center(
-            child: Text(report),
-          )
-        ],
-      ),
-    );
+            Container(
+                padding: const EdgeInsets.only(top: 10),
+                child: ElevatedButton(
+                    onPressed: () {
+                      calculate();
+                    },
+                    child: const Text('Calculate'))),
+          ],
+        ),
+      );
+    }
+    return BMIReport(
+        bmiValue: value,
+        reset: () {
+          setState(() {
+            value = 0;
+            _heightInput.text = '';
+            _weightInput.text = '';
+          });
+        });
   }
 }
