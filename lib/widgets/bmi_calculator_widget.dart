@@ -154,6 +154,7 @@ class _BMICalculatorState extends State<BMICalculator> {
     }
     return BMIReport(
         bmiValue: value,
+        heightValue: double.parse(_heightInput.text),
         reset: () {
           setState(() {
             value = 0;
